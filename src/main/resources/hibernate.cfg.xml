@@ -20,6 +20,7 @@
 
  <mapping class="adressBook.Contact"/>
  
+ <mapping resource="Contact.hbm.xml"/>
  
  </session-factory>
 

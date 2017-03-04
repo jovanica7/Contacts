@@ -5,10 +5,24 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function(){
+		$(".del").click(function() {
+			var retVal = confirm("Are you sure you want to delete this contact?");
+		    if( retVal == true ){
+		    	    var i = this.parentNode.parentNode.parentNode.parentNode.rowIndex;
+		    	    document.getElementById("allcontacts").deleteRow(i);
+		    	//document.getElementById("allcontacts").deleteRow(this.rowIndex);
+		    	//$(this).closest('.tr').remove();
+		    }
+		});  
+	});
+    </script>
   </head>
 <body>
 <div class="container-fluid">
-  <h1 class="text-success" >My contacts</h1>
+  <h1 class="text-success">My contacts</h1>
+  <p class="text-right"><img src ="https://placeimg.com/640/480/people" class=".img-responsive" width="150px" height="100px" alt="People"></img></p>
   <p><button class="btn btn-warning" onclick="addContact()">+ New contact</button></p>
   <div id="newcontact"></div>
   <div class="table-responsive">
@@ -33,7 +47,7 @@
    			 <span class="caret"></span></button>
    			 <ul class="dropdown-menu">
      		   <li><a href="#">Update contact</a></li>
-     		   <li><a href="#">Delete contact</a></li>
+     		   <li class = "del"><a href="#">Delete contact</a></li>
    			 </ul>
  		 </div></td></tr>
       <tr>
@@ -46,7 +60,7 @@
    			 <span class="caret"></span></button>
    			 <ul class="dropdown-menu">
      		   <li><a href="#">Update contact</a></li>
-     		   <li><a href="#">Delete contact</a></li>
+     		   <li  class = "del"><a href="#">Delete contact</a></li>
    			 </ul>
  		 </div></td></tr>
       <tr>
@@ -60,7 +74,7 @@
    			 <span class="caret"></span></button>
    			 <ul class="dropdown-menu">
      		   <li><a href="#">Update contact</a></li>
-     		   <li><a href="#">Delete contact</a></li>
+     		   <li  class = "del"><a href="#">Delete contact</a></li>
    			 </ul>
  		 </div>
  		</td>
@@ -76,7 +90,7 @@
    			 <span class="caret"></span></button>
    			 <ul class="dropdown-menu">
      		   <li><a href="#">Update contact</a></li>
-     		   <li><a href="#">Delete contact</a></li>
+     		   <li  class = "del"><a href="#">Delete contact</a></li>
    			 </ul>
  		 </div>
  		</td>
@@ -92,7 +106,7 @@
    			 <span class="caret"></span></button>
    			 <ul class="dropdown-menu">
      		   <li><a href="#">Update contact</a></li>
-     		   <li><a href="#">Delete contact</a></li>
+     		   <li class = "del" ><a href="#">Delete contact</a></li>
    			 </ul>
  		 </div>
  		</td>
@@ -101,30 +115,7 @@
   </table>
   </div>
 </div>
-<script>
-function addContact() {
-    document.getElementById("newcontact").innerHTML = '<form><div class="form-group"><label>First name:</label><input type="text" class="form-control" id="fname"></div><div class="form-group"><label>Last name:</label><input type="text" class="form-control" id="lname"></div><div class="form-group"><label>Phone:</label><input type="text" class="form-control" id="phone"></div><div class="form-group"><label>Email:</label><input type="text" class="form-control" id="email"></div><div><button id= "save" class="btn btn-success" onclick="saveContact()">Save contact</button></div></form>';
-}
+<script src="javascript.js"></script>
 
-</script>
-
-<script>
-function saveContact(){
-	
-	var first_name = document.getElementById("fname").value;
-	var last_name = document.getElementById("lname").value;
-	var phone = document.getElementById("phone").value;
-	var email = document.getElementById("email").value;
-	
-	$('#allcontacts tr:last').after('<tr><td>first_name</td><td>last_name</td><td>phone</td><td>email</td><td><div class="dropdown"><button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#">Update contact</a></li><li><a href="#">Delete contact</a></li></ul></div></td></tr>');
-	
-
-	//document.getElementById("allcontacts").innerHTML += '<tr><td>"+ first_name +"</td><td>last_name</td><td>phone</td><td>email</td><td><div class="dropdown"><button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#">Update contact</a></li><li><a href="#">Delete contact</a></li></ul></div></td></tr>';
-
-	
-	//document.getElementById("allcontacts").appendChild('<tr><td>"+ first_name +"</td><td>last_name</td><td>phone</td><td>email</td><td><div class="dropdown"><button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#">Update contact</a></li><li><a href="#">Delete contact</a></li></ul></div></td></tr>');
-
-}
-</script>
 </body>
 </html>
