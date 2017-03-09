@@ -22,7 +22,7 @@
 <body>
 <div class="container-fluid">
   <h1 class="text-success">My contacts</h1>
-  <p class="text-right"><img src ="https://placeimg.com/640/480/people" class=".img-responsive" width="150px" height="100px" alt="People"></img></p>
+  <p class="text-right"><img src ="https://placeimg.com/640/480/people" class="img-responsive" width="170px" height="100px" alt="People"></img></p>
   <p><button class="btn btn-warning" onclick="addContact()">+ New contact</button></p>
   <div id="newcontact"></div>
   <div class="table-responsive">
@@ -38,15 +38,15 @@
     </thead>
     <tbody>
       <tr>
-        <td>Aleksandar</td>
-        <td>Dakic</td>
-        <td>+381643298175</td>
-        <td>acadakic@gmail.com</td>
+        <td class = "name_value" >Aleksandar</td>
+        <td class = "lastname_value">Dakic</td>
+        <td class = "phone_value">+381643298175</td>
+        <td class = "email_value">acadakic@gmail.com</td>
         <td><div class="dropdown">
    		 <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions
    			 <span class="caret"></span></button>
    			 <ul class="dropdown-menu">
-     		   <li><a href="#">Update contact</a></li>
+     		   <li onclick = "updateContact()"><a href="#">Update contact</a></li>
      		   <li class = "del"><a href="#">Delete contact</a></li>
    			 </ul>
  		 </div></td></tr>
@@ -59,7 +59,7 @@
    		 <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions
    			 <span class="caret"></span></button>
    			 <ul class="dropdown-menu">
-     		   <li><a href="#">Update contact</a></li>
+     		   <li onclick = "updateContact()"><a href="#">Update contact</a></li>
      		   <li  class = "del"><a href="#">Delete contact</a></li>
    			 </ul>
  		 </div></td></tr>
@@ -73,7 +73,7 @@
    		 <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions
    			 <span class="caret"></span></button>
    			 <ul class="dropdown-menu">
-     		   <li><a href="#">Update contact</a></li>
+     		   <li onclick = "updateContact()"><a href="#">Update contact</a></li>
      		   <li  class = "del"><a href="#">Delete contact</a></li>
    			 </ul>
  		 </div>
@@ -89,7 +89,7 @@
    		 <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions
    			 <span class="caret"></span></button>
    			 <ul class="dropdown-menu">
-     		   <li><a href="#">Update contact</a></li>
+     		   <li onclick = "updateContact()"><a href="#">Update contact</a></li>
      		   <li  class = "del"><a href="#">Delete contact</a></li>
    			 </ul>
  		 </div>
@@ -105,7 +105,7 @@
    		 <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions
    			 <span class="caret"></span></button>
    			 <ul class="dropdown-menu">
-     		   <li><a href="#">Update contact</a></li>
+     		   <li onclick = "updateContact()"><a href="#">Update contact</a></li>
      		   <li class = "del" ><a href="#">Delete contact</a></li>
    			 </ul>
  		 </div>

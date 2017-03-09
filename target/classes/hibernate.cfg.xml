@@ -17,10 +17,9 @@
  <property name="hbm2ddl.auto">update</property>
  
  <property name="show_sql">true</property>
-
- <mapping class="adressBook.Contact"/>
  
- <mapping resource="Contact.hbm.xml"/>
+ <mapping class="adressBook.Contact"/>
+ <!-- mapping resource="Contact.hbm.xml"/-->
  
  </session-factory>
 

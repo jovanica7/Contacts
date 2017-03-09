@@ -2,24 +2,24 @@ package adressBook;
 
 
 import adressBook.Contact;
+import controller.TestController;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
 @SpringBootApplication
-@EnableAutoConfiguration
-@ComponentScan
+@ComponentScan(basePackageClasses = TestController.class)
 public class Application {
 
 private static final SessionFactory sessionFactory = buildSessionFactory();
@@ -32,11 +32,14 @@ private static final SessionFactory sessionFactory = buildSessionFactory();
 
   public static void main(String[] args) {
 	  
+	  Configuration cfg = new Configuration();
+      cfg.configure("hibernate.cfg.xml");
+      
 	  SpringApplication.run(Application.class, args);
 	  
       Contact contact = new Contact.ContactBuilder("Aleksandar","Dakic")
               .withEmail("acadakic@gmail.com")
-              .withPhone("0643298175")
+              .withPhone("+381643298175")
               .build();
       int id = save(contact);
 
@@ -77,6 +80,7 @@ private static final SessionFactory sessionFactory = buildSessionFactory();
   }
 
   private static Contact findContactById(int id) {
+	  
       // Open a session
       Session session = sessionFactory.openSession();
 

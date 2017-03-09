@@ -1,7 +1,11 @@
 package adressBook;
 import javax.persistence.*;
+
+import org.springframework.stereotype.Component;
+
 import java.lang.String;
 
+@Component
 @Entity
 public class Contact {
     @Id

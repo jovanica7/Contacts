@@ -34,7 +34,13 @@ function saveContact(){
 
 }
 
-
+function updateContact() {
+//	var name = $(this).parents('.name_value').text();
+//	var last_name = document.getElementsByTagName('td')[1].value;
+//	var phone = document.getElementsByTagName('td')[2].value;
+//	var email = document.getElementsByTagName('td')[3].value;
+    document.getElementById("newcontact").innerHTML = '<form><div class="form-group"><label>First name:</label><input type="text" value = "" class="form-control" id="fname"></div><div class="form-group"><label>Last name:</label><input type="text" value = "" class="form-control" id="lname"></div><div class="form-group"><label>Phone:</label><input type="text" class="form-control" id="phone"></div><div class="form-group"><label>Email:</label><input type="text" class="form-control" id="email"></div><div><button id= "update" class="btn btn-success" onclick="saveContact()">Update contact</button></div></form>';
+}
 
 
 
