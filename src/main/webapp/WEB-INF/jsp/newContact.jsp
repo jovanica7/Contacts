@@ -1,4 +1,5 @@
-<html lang="en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
  	<meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,13 +9,12 @@
 <title>Add New Contact</title>
 </head>
 <body>
-  <form>
-  <div class="form-group"><label>First name:</label><input type="text" class="form-control" id="fname"></div>
-  <div class="form-group"><label>Last name:</label><input type="text" class="form-control" id="lname"></div>
-  <div class="form-group"><label>Phone:</label><input type="text" class="form-control" id="phone"></div>
-  <div class="form-group"><label>Email:</label><input type="text" class="form-control" id="email"></div>
-  <div><button id= "save" class="btn btn-success" onclick="href='/myAdressBook/saveContact'">Save contact</button></div>
-  </form>';
-
-</body>
+  <form  action="#" th:action="@{/myAdressBook}" th:object="${contact}" method="post" enctype="multipart/form-data">
+  <div class="form-group"><label>First name:</label><input type="text" th:field="*{firstName}" class="form-control" id="contact.firstName"></div>
+  <div class="form-group"><label>Last name:</label><input type="text" th:field="*{lastName}" class="form-control" id="contact.lastName"></div>
+  <div class="form-group"><label>Phone:</label><input type="text" th:field="*{phone}" class="form-control" id="contact.phone"></div>
+  <div class="form-group"><label>Email:</label><input type="text" th:field="*{email}" class="form-control" id="contact.email"></div>
+  <button type="submit" id= "save" class="btn btn-success" onclick="location.href='/myAdressBook'">Save contact</button>
+  </form>
+  </body>
 </html>

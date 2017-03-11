@@ -12,14 +12,6 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackageClasses = MainController.class)
 public class Application {
 
-//private static final SessionFactory sessionFactory = buildSessionFactory();
-//
-//  private static SessionFactory buildSessionFactory() {
-//    //Create a StandardServiceRegistry
-//    final ServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-//    return new MetadataSources(registry).buildMetadata().buildSessionFactory();
-//  }
-
   public static void main(String[] args) {
 	  
 	  Configuration cfg = new Configuration();

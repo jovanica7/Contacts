@@ -3,6 +3,8 @@ package controller;
 import adressBook.Actions;
 import adressBook.Contact;
 
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import org.thymeleaf.context.WebContext;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -23,31 +26,40 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RestController
 public class MainController {
 	
-	@RequestMapping("/myAdressBook")
-	public void home(HttpServletRequest request, HttpServletResponse response,
-	        ServletContext servletContext, TemplateEngine templateEngine) throws IOException{
+//	@RequestMapping("/myAdressBook")
+//	public void home(HttpServletRequest request, HttpServletResponse response,
+//	        ServletContext servletContext, TemplateEngine templateEngine) throws IOException{
+//		
+//		List<Contact> allContacts = Actions.fetchAllContacts();
+////		model = new ModelAndView("index");
+////		model.addObject("list", allContacts);
+//		
+//		WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
+//		ctx.setVariable("contacts", allContacts);
+//
+//		templateEngine.process("contacts/list", ctx, response.getWriter());
+//		//return "index";
+//	}
+	
+	@RequestMapping(value="/myAdressBook", method=RequestMethod.GET)
+	public ModelAndView home(Model model){
 		
-		List<Contact> allContacts = Actions.fetchAllContacts();
-//		model = new ModelAndView("index");
-//		model.addObject("list", allContacts);
+		model.addAttribute("contact", new Contact());
+		return new ModelAndView("index");
+	}
+	
+	@RequestMapping(value=" /myAdressBook/addNew", method=RequestMethod.GET)
+	public ModelAndView addNewContact(Model model){
 		
-		WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
-		ctx.setVariable("contacts", allContacts);
-
-		templateEngine.process("contacts/list", ctx, response.getWriter());
-		//return "index";
+		return new ModelAndView("newContact");
 	}
 	
 	@RequestMapping(value=" /myAdressBook/addNew", method=RequestMethod.POST)
-	public String add(ModelAndView model){
+	public void saveNewContact(@ModelAttribute(value = "contact") Contact contact){
 		
-		return "newContact";
-	}
-	
-	@RequestMapping(value=" /myAdressBook/saveContact", method=RequestMethod.GET)
-	public int addNewContact(@RequestBody Contact contact){
-
-		return Actions.save(contact);
+		//model.put("contact", contact);
+		System.out.println(contact);
+		Actions.save(contact);
 	}
 	
 	@RequestMapping(value=" /myAdressBook{id}", method=RequestMethod.PUT)
