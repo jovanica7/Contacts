@@ -2,6 +2,7 @@ package controller;
 
 import adressBook.Actions;
 import adressBook.Contact;
+import adressBook.Contact.ContactBuilder;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @RestController
 public class MainController {
@@ -42,31 +45,37 @@ public class MainController {
 //	}
 	
 	@RequestMapping(value="/myAdressBook", method=RequestMethod.GET)
-	public ModelAndView home(Model model){
+	public ModelAndView home(){
 		
-		model.addAttribute("contact", new Contact());
 		return new ModelAndView("index");
 	}
 	
-	@RequestMapping(value=" /myAdressBook/addNew", method=RequestMethod.GET)
-	public ModelAndView addNewContact(Model model){
+	@RequestMapping(value="/myAdressBook/addNew", method=RequestMethod.GET)
+	public ModelAndView addNewContact(){
 		
 		return new ModelAndView("newContact");
 	}
 	
-	@RequestMapping(value=" /myAdressBook/addNew", method=RequestMethod.POST)
-	public void saveNewContact(@ModelAttribute(value = "contact") Contact contact){
+	@RequestMapping(value="/myAdressBook", method=RequestMethod.POST)
+	public ModelAndView saveNewContact(@RequestParam("fname") String first_name, @RequestParam("lname") String last_name, @RequestParam("number") String phone ,@RequestParam("mail") String email){
 		
-		//model.put("contact", contact);
-		System.out.println(contact);
-		Actions.save(contact);
+		Contact c = new Contact.ContactBuilder(first_name, last_name)
+	              .withEmail(email)
+	              .withPhone(phone)
+	              .build();
+		Actions.save(c);
+		ModelAndView model = new ModelAndView("index");
+		model.addObject(c);
+		return model;
+		
 	}
 	
-	@RequestMapping(value=" /myAdressBook{id}", method=RequestMethod.PUT)
-	public void updateContact(@PathVariable int id){
+	@RequestMapping(value="/myAdressBook/updateContact", method=RequestMethod.GET)
+	public ModelAndView updateContact(Model model){
 		
-		Contact contact = Actions.findContactById(id);
-		Actions.update(contact);
+		//Contact contact = Actions.findContactById(id);
+		//Actions.update(contact);
+		return new ModelAndView("updateContact");
 	}
 	
 	@RequestMapping(value=" /myAdressBook/{id}", method=RequestMethod.DELETE)

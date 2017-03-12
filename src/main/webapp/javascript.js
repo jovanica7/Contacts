@@ -1,7 +1,3 @@
-function addContact() {
-    document.getElementById("newcontact").innerHTML = '<form><div class="form-group"><label>First name:</label><input type="text" class="form-control" id="fname"></div><div class="form-group"><label>Last name:</label><input type="text" class="form-control" id="lname"></div><div class="form-group"><label>Phone:</label><input type="text" class="form-control" id="phone"></div><div class="form-group"><label>Email:</label><input type="text" class="form-control" id="email"></div><div><button id= "save" class="btn btn-success" onclick="saveContact()">Save contact</button></div></form>';
-}
-
 function saveContact(){
 	
 	var first_name = document.getElementById("fname").value;
@@ -23,26 +19,7 @@ function saveContact(){
     cell4.innerHTML = email;
     cell5.innerHTML = '<div class="dropdown"><button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#">Update contact</a></li><li><a href="#">Delete contact</a></li></ul></div>';
 
-	
-	//$('#allcontacts tr:last').after('<tr><td>first_name</td><td>last_name</td><td>phone</td><td>email</td><td><div class="dropdown"><button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#">Update contact</a></li><li><a href="#">Delete contact</a></li></ul></div></td></tr>');
-	
-
-	//document.getElementById("allcontacts").innerHTML += '<tr><td>"+ first_name +"</td><td>last_name</td><td>phone</td><td>email</td><td><div class="dropdown"><button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#">Update contact</a></li><li><a href="#">Delete contact</a></li></ul></div></td></tr>';
-
-	
-	//document.getElementById("allcontacts").appendChild('<tr><td>"+ first_name +"</td><td>last_name</td><td>phone</td><td>email</td><td><div class="dropdown"><button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions<span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#">Update contact</a></li><li><a href="#">Delete contact</a></li></ul></div></td></tr>');
-
 }
-
-function updateContact() {
-//	var name = $(this).parents('.name_value').text();
-//	var last_name = document.getElementsByTagName('td')[1].value;
-//	var phone = document.getElementsByTagName('td')[2].value;
-//	var email = document.getElementsByTagName('td')[3].value;
-    document.getElementById("newcontact").innerHTML = '<form><div class="form-group"><label>First name:</label><input type="text" value = "" class="form-control" id="fname"></div><div class="form-group"><label>Last name:</label><input type="text" value = "" class="form-control" id="lname"></div><div class="form-group"><label>Phone:</label><input type="text" class="form-control" id="phone"></div><div class="form-group"><label>Email:</label><input type="text" class="form-control" id="email"></div><div><button id= "update" class="btn btn-success" onclick="saveContact()">Update contact</button></div></form>';
-}
-
-
 
 
 
