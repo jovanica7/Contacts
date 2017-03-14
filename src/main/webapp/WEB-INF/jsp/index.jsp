@@ -5,21 +5,12 @@
 <head>
     <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Adress Book</title>
+    <title>My Address Book</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 <body>
- <sql:setDataSource
-        var="myDS"
-        driver="com.mysql.jdbc.Driver"
-        url="jdbc:mysql://localhost:3306/adressbook"
-        user="root" password="skockica777"
-    />
-    <sql:query var="allContacts" dataSource="${myDS}">
-        SELECT * FROM contact;
-    </sql:query>
 <div class="container-fluid">
   <h1 class="text-success">My contacts</h1>
   <p class="text-right"><img src ="http://lorempixel.com/400/200/people/" class="img-responsive" width="170px" height="100px" alt="People"></img></p>
@@ -37,7 +28,7 @@
         <th></th>
       </tr>
     </thead>
-    <c:forEach var="contact" items="${allContacts.rows}">
+    <c:forEach var="contact" items="${allContacts}">
                 <tr>
                     <td><c:out value="${contact.firstName}" /></td>
                     <td><c:out value="${contact.lastName}" /></td>
@@ -48,7 +39,7 @@
    					 <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions
    					 <span class="caret"></span></button>
    					 <ul class="dropdown-menu">
-     				   <li id="${contact.id}" onclick="/myAdressBook/updateContact"><a href='http://localhost:8080/myAdressBook/updateContact'>Update contact</a></li>
+     				   <li onclick="/myAdressBook/updateContact"><a href='http://localhost:8080/myAdressBook/updateContact'>Update contact</a></li>
      				   <li class = "del"><a href="#">Delete contact</a></li>
    					 </ul>
  					 </div>

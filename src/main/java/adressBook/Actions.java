@@ -12,6 +12,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 import org.springframework.stereotype.Component;
 
+import adressBook.Contact;
+
 @Component
 public class Actions {
 	

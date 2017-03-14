@@ -1,6 +1,5 @@
 package adressBook;
 
-
 import controller.MainController;
 
 import org.hibernate.cfg.Configuration;
@@ -61,12 +60,6 @@ public class Application {
 //      }
   }
 
- 
-  
-  
-
-  // @SuppressWarnings("unchecked")
-  
 
   
 }

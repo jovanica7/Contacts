@@ -9,12 +9,12 @@
 <title>Add New Contact</title>
 </head>
 <body>
-  <form action="#" th:action="@{/myAdressBook}" th:object="${contact}" method="post" enctype="multipart/form-data">
+  <form action="#" th:action="@{/myAddressBook/addNew}" th:object="${contact}" method="post" enctype="multipart/form-data">
   <div class="form-group"><label>First name:</label><input type="text" name="fname" th:field="*{firstName}" class="form-control" id="contact.firstName"></div>
   <div class="form-group"><label>Last name:</label><input type="text" name= "lname" th:field="*{lastName}" class="form-control" id="contact.lastName"></div>
   <div class="form-group"><label>Phone:</label><input type="text" name="number" th:field="*{phone}" class="form-control" id="contact.phone"></div>
   <div class="form-group"><label>Email:</label><input type="text" name="mail" th:field="*{email}" class="form-control" id="contact.email"></div>
-  <input type="submit" value="Save contact" id= "save" class="btn btn-success" onclick="location.href='/myAdressBook'"/>
+  <input type="submit" value="Save contact" id= "save" class="btn btn-success" />
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   </form>
   </body>

@@ -7,21 +7,22 @@ import java.lang.String;
 
 @Component
 @Entity
+@Table(name = "contact")
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
+    @Column(name = "firstName")
     private String firstName;
 
-    @Column
+    @Column(name = "lastName")
     private String lastName;
 
-    @Column
+    @Column(name = "email")
     private String email;
 
-    @Column
+    @Column(name = "phone")
     private String phone;
 
     // Default constructor for JPA
