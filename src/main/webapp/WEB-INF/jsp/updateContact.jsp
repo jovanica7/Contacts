@@ -16,7 +16,7 @@
   <div class="form-group"><label>Last name:</label><input type="text" th:field="*{lastName}" class="form-control" id="contact.lastName"></div>
   <div class="form-group"><label>Phone:</label><input type="text" th:field="*{phone}" class="form-control" id="contact.phone"></div>
   <div class="form-group"><label>Email:</label><input type="text" th:field="*{email}" class="form-control" id="contact.email"></div>
-  <button type="submit" id= "save" class="btn btn-success" onclick="location.href='/myAdressBook'">Update contact</button>
+  <button type="submit" id= "update" class="btn btn-success" onclick="location.href='/myAddressBook'">Update contact</button>
   </form>
   </body>
 </html>

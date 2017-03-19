@@ -1,5 +1,7 @@
 package adressBook;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -9,20 +11,29 @@ import java.lang.String;
 @Entity
 @Table(name = "contact")
 public class Contact {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "firstName")
+    @NotNull
+    @Size(min = 2, max = 20)
     private String firstName;
 
     @Column(name = "lastName")
+    @NotNull
+    @Size(min = 2, max = 20)
     private String lastName;
 
     @Column(name = "email")
+    @NotNull
+    @Size(min = 5, max = 30)
     private String email;
 
     @Column(name = "phone")
+    @NotNull
+    @Size(min = 5, max = 30)
     private String phone;
 
     // Default constructor for JPA
