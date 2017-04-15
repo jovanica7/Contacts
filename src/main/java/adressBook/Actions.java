@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.websocket.server.PathParam;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,7 +26,7 @@ public class Actions {
 	    return new MetadataSources(registry).buildMetadata().buildSessionFactory();
 	  }
 	  
-	  public static Contact findContactById(int id) {
+	  public static Contact findContactById(@PathParam("id") int id) {
 		  
 	      // Open a session
 	      Session session = sessionFactory.openSession();

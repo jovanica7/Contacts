@@ -67,19 +67,16 @@
                     <td><c:out value="${contact.phone}" /></td>
                     <td><c:out value="${contact.email}" /></td> 
                     <td><c:out value="${contact.sex}"/></td>
+                    <td><form th:action="@{|/myAddressBook/${contact.id}|}" method="post">
+           			 <button type="submit">Delete</button>
+       				 </form></td>
                     <td>
-                    <div class="dropdown">
+       				 <div class="dropdown">
    					 <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions
    					 <span class="caret"></span></button>
    					 <ul class="dropdown-menu">
-					<li> 
-           			 <button class="btn btn-warning" onclick="location.href='/myAddressBook/update'">Update contact</button>
-       				</li>     				   
-       				 <li><c:url var="deleteUrl" value="/myAddressBook/delete"/>  
-     				   <form action="${deleteUrl}" method="post">
-                    <input name="id" type="hidden" value="${contact.id}"/>
-           			 <button type="submit" onClick="return confirm('Are you sure you want to delete this contact?')" class="btn btn-warning">Delete contact</button>
-       				 </form></li>
+     				   <li><button type ="submit" class="default" th:href="@{'/myAddressBook/update/'${contact.id}}">Update contact</button></li>
+     				   <li><button type ="submit" class="default" th:href="@{|/myAddressBook/${contact.id}|}">Delete contact</button></li>
    					 </ul>
  					 </div>
  					</td>           

@@ -1,0 +1,51 @@
+	
+//	@RequestMapping(value="/myAddressBook/update1", method=RequestMethod.POST)
+//	public ModelAndView updateContact(Contact contact, Model model, @RequestParam("fname") String first_name, 
+//			@RequestParam("lname") String last_name, @RequestParam("date") String dateOfBirth, @RequestParam("address") String address, @RequestParam("number") String phone , @RequestParam("mail") String email, @RequestParam("pol") String sex, @RequestParam("id") int id) throws ServletException, IOException{
+//		
+////		if(result.hasErrors()){
+////			
+////			return new ModelAndView("update");
+////		}
+//		
+////		response.setContentType("text/html;charset=UTF-8");
+////		String string_id = request.getParameter("id");
+////		int id = Integer.parseInt(string_id);
+//		
+//		contact = Actions.findContactById(id);
+//		contact.setFirstName(first_name);
+//		contact.setLastName(last_name);
+//		contact.setDateOfBirth(dateOfBirth);
+//		contact.setAddress(address);
+//		contact.setPhone(phone);
+//		contact.setEmail(email);
+//		contact.setSex(sex);
+//
+//		Actions.update(contact);	
+//		model.addAttribute("allContacts", Actions.fetchAllContacts());
+//		return new ModelAndView("index");
+//		
+//	}
+	
+//	protected int doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		response.setContentType("text/html;charset=UTF-8");
+//		String string_id = request.getParameter("id");
+//		int id = Integer.parseInt(string_id);
+//		return id;
+//	}
+	
+//	@RequestMapping(value="/myAdressBook/updateContact", method=RequestMethod.GET)
+//	public ModelAndView updateContact(Model model){
+//		
+//		//Contact contact = Actions.findContactById(id);
+//		//Actions.update(contact);
+//		return new ModelAndView("updateContact");
+//	}
+//	
+//	@RequestMapping(value=" /myAdressBook/{id}", method=RequestMethod.DELETE)
+//	public void deleteContact(@PathVariable int id){
+//		
+//		Contact contact = Actions.findContactById(id);
+//		Actions.delete(contact);
+//	}
+	//  <input type="hidden" name="id" id="id_hidden" value="updateContact()"/>

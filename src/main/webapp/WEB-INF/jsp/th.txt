@@ -46,7 +46,7 @@
    <table id="allcontacts" class="table table-hover">
     <thead>
       <tr>
-      	<th class="hidden-md hidden-lg">Id</th>
+      <th class="hidden-md hidden-lg">Id</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Date Of Birth</th>
@@ -57,34 +57,29 @@
         <th></th>
       </tr>
     </thead>
-    <c:forEach var="contact" items="${allContacts}">
-                <tr>
-                	<td class="hidden-md  hidden-lg"><c:out value="${contact.id}"/></td>
-                    <td><c:out value="${contact.firstName}" /></td>
-                    <td><c:out value="${contact.lastName}" /></td>
-                    <td><c:out value="${contact.dateOfBirth}"/></td>
-                    <td><c:out value="${contact.address}"/></td>
-                    <td><c:out value="${contact.phone}" /></td>
-                    <td><c:out value="${contact.email}" /></td> 
-                    <td><c:out value="${contact.sex}"/></td>
+                <tr th:each="contact : ${allContacts}">
+                <td class="hidden-md  hidden-lg"><c:out value="${contact.id}"/></td>
+                    <td th:text="${contact.firstName}"></td>
+                    <td th:text="${contact.lastName}"></td>
+                    <td th:text="${contact.dateOfBirth}"></td>
+                    <td th:text="${contact.address}"></td>
+                    <td th:text="${contact.phone}"></td>
+                    <td th:text="${contact.email}"></td> 
+                    <td th:text="${contact.sex}"></td>
+                    <td><form th:action="@{|/myAddressBook/${contact.id}|}" method="post">
+           			 <button type="submit">Delete</button>
+       				 </form></td>
                     <td>
-                    <div class="dropdown">
+       				 <div class="dropdown">
    					 <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions
    					 <span class="caret"></span></button>
    					 <ul class="dropdown-menu">
-					<li> 
-           			 <button class="btn btn-warning" onclick="location.href='/myAddressBook/update'">Update contact</button>
-       				</li>     				   
-       				 <li><c:url var="deleteUrl" value="/myAddressBook/delete"/>  
-     				   <form action="${deleteUrl}" method="post">
-                    <input name="id" type="hidden" value="${contact.id}"/>
-           			 <button type="submit" onClick="return confirm('Are you sure you want to delete this contact?')" class="btn btn-warning">Delete contact</button>
-       				 </form></li>
+     				   <li><button type ="submit" class="default" th:href="@{'/myAddressBook/update/'${contact.id}}">Update contact</button></li>
+     				   <li><button type ="submit" class="default" th:href="@{|/myAddressBook/${contact.id}|}">Delete contact</button></li>
    					 </ul>
  					 </div>
  					</td>           
                 </tr>
-            </c:forEach>
     <tbody>
 </tbody>
 </table>

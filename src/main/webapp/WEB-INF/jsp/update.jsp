@@ -11,14 +11,19 @@
 <body>
 <div class = "bg-success col-md-4 col-md-offset-4 vcenter">
 <div class="text-info" ><h2>Update Contact</h2></div>
-  <form action="#" th:action="@{/myAddressBook/addNew}" th:object="${contact}" method="post" enctype="multipart/form-data">
-  <div class="form-group"><label>First name:</label><input type="text" name="fname" th:field="*{firstName}" class="form-control" id="contact.firstName"> </div>
-  <div class="form-group"><label>Last name:</label><input type="text" name= "lname" th:field="*{lastName}" class="form-control" id="contact.lastName"> </div>
-  <div class="form-group"><label>Phone:</label><input type="text" name="number" th:field="*{phone}" class="form-control" id="contact.phone">  </div>
-  <div class="form-group"><label>Email:</label><input type="text" name="mail" th:field="*{email}" class="form-control" id="contact.email">  </div>
-  <div class= "btn-toolbar"><input type="submit" value="Update" id= "save" class="btn btn-success" /><input type="submit" value="Cancel" id= "cancel" class="btn btn-danger" /></div>
+  <form action="#" th:action="@{/myAddressBook/update}" th:object="${contact}" method="post" modelAttribute="contact" enctype="multipart/form-data">
+  <div class="form-group hidden-md  hidden-lg"><label>Id:</label><input type="text" name="id" th:field="*{id}" class="form-control"></div>
+  <div class="form-group"><label>First name:</label><input type="text" name="fname" th:field="*{firstName}" class="form-control"></div>
+  <div class="form-group"><label>Last name:</label><input type="text" name= "lname" th:field="*{lastName}" class="form-control" > </div>
+  <div class="form-group"><label>Date of birth:</label><input type="text" name= "date" th:field="*{dateOfBirth}" class="form-control" > </div>
+  <div class="form-group"><label>Address:</label><input type="text" name= "address" th:field="*{address}" class="form-control" > </div>
+  <div class="form-group"><label>Phone:</label><input type="text" name="number" th:field="*{phone}" class="form-control" >  </div>
+  <div class="form-group"><label>Email:</label><input type="text" name="mail" th:field="*{email}" class="form-control" >  </div>
+   <div class="form-group"><label>Sex:</label><input type="text" name="pol" th:field="*{sex}" class="form-control" >  </div>
+  <div class= "btn-toolbar"><button type="submit" value="Save" class="btn btn-success">Save</button> <button type="button" value="Cancel" onclick="location.href='/myAddressBook'" class="btn btn-danger" >Cancel</button> </div>
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   </form>
   </div>
+  <script src="functions.js"></script> 
   </body>
 </html>

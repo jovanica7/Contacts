@@ -4,17 +4,20 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-   <class name="adressBook.Contact" table="contacts">
+   <class name="adressBook.Contact" table="contact">
       <meta attribute="class-description">
          Informations about contacts.
       </meta>
       <id name="id" type="int" column="id">
          <generator class="native"/>
       </id>
-      <property name="firstName" column="name" type="string"/>
-      <property name="lastName" column="lastname" type="string"/>
+      <property name="firstName" column="firstName" type="string"/>
+      <property name="lastName" column="lastName" type="string"/>
+      <property name="dateOfBirth" column="dateOfBirth" type="string"/>
+      <property name="address" column="address" type="string"/>
       <property name="phone" column="phone" type="string"/>
       <property name="email" column="email" type="string"/>
+      <property name="sex" column="sex" type="string"/>
      
    </class>
 </hibernate-mapping>
