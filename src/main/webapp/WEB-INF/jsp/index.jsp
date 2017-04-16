@@ -72,8 +72,8 @@
    					 <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Actions
    					 <span class="caret"></span></button>
    					 <ul class="dropdown-menu">
-					<li> 
-           			 <button class="btn btn-warning" onclick="location.href='/myAddressBook/update'">Update contact</button>
+					<li>
+           			 <button class="btn btn-warning"  onclick="location.href='/myAddressBook/update/${contact.id}'" >Update contact</button>
        				</li>     				   
        				 <li><c:url var="deleteUrl" value="/myAddressBook/delete"/>  
      				   <form action="${deleteUrl}" method="post">

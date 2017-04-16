@@ -89,38 +89,36 @@ public class MainController{
 		
 	}
 	
-//	@RequestMapping(value = "/myAddressBook/updateId", method = RequestMethod.POST)
-//	public ModelAndView updateId(@RequestParam("contact_id") int contact_id, @ModelAttribute Contact contact, Model model, RedirectAttributes redirect) {
-//			
-//			//redirect.addFlashAttribute("id", id);
-//			return new ModelAndView("redirect:/myAddressBook/update/" + String.valueOf(contact_id));
-//		
-//	}
+	@RequestMapping(value = "/myAddressBook/updateId", method = RequestMethod.POST)
+	public ModelAndView updateId(@RequestParam("id") int Id, @ModelAttribute Contact contact, Model model, RedirectAttributes redirect) {
+			
+			redirect.addFlashAttribute("Id", Id);
+			return new ModelAndView("redirect:/myAddressBook/update");
+		
+	}
 	
-	@RequestMapping(value="/myAddressBook/update/{id}", method=RequestMethod.GET)
-	public ModelAndView formUpdateContact(Contact contact, @PathVariable int id, Model model, RedirectAttributes redirect){
+	@RequestMapping(value="/myAddressBook/update", method=RequestMethod.GET)
+	public ModelAndView formUpdateContact(@ModelAttribute("contact") Contact contact,  @PathVariable int id, Model model, RedirectAttributes redirect){
 		
 		//@ModelAttribute("Id") int Id,
 		if(!model.containsAttribute("contact")){
-			model.addAttribute("contact", Actions.findContactById(id));
+			model.addAttribute("contact", Actions.findContactById(Id));
 		}
 		
-		//redirect.addFlashAttribute("id", id);
+		redirect.addFlashAttribute("Id", Id);
 		return new ModelAndView("update");
 	}
 	
-	@RequestMapping(value="/myAddressBook/update/{id}", method=RequestMethod.POST)
-	public ModelAndView updateContact(@Valid Contact contact, BindingResult result, RedirectAttributes redirect, @PathVariable int id, Model model, @RequestParam("fname") String first_name, @RequestParam("lname") 
+	@RequestMapping(value="/myAddressBook/update", method=RequestMethod.POST)
+	public ModelAndView updateContact(@ModelAttribute("contact") @Valid Contact contact, BindingResult result, RedirectAttributes redirect, @ModelAttribute("Id") int Id, Model model, @RequestParam("fname") String first_name, @RequestParam("lname") 
 	String last_name, @RequestParam("date") String dateOfBirth, @RequestParam("address") String address, @RequestParam("number") String phone, @RequestParam("mail") String email,  @RequestParam("pol") String sex){
 		
 	
 		if(result.hasErrors() && contact!= null){
 			redirect.addFlashAttribute("contact", contact);
-			return new ModelAndView("redirect:/myAddressBook/update/" + String.valueOf(id));
+			return new ModelAndView("redirect:/myAddressBook/addNew");
 		}	
-		
-		System.out.println("Ono sto mi treba je " + id);
-		contact = Actions.findContactById(id);
+		System.out.println("Ono sto mi treba je " + Id);
 		contact.setFirstName(first_name);
 		contact.setLastName(last_name);
 		contact.setDateOfBirth(dateOfBirth);

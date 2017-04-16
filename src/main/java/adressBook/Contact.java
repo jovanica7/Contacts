@@ -30,15 +30,15 @@ public class Contact {
     private String address;
 
     @Column(name = "email")
-    @Size(min = 5, max = 30)
+    @Size(min = 2, max = 30)
     private String email;
 
     @Column(name = "phone")
-    @Size(min = 5, max = 30)
+    @Size(min = 2, max = 30)
     private String phone;
     
     @Column(name = "dateOfBirth")
-    @Size(min = 5, max = 30)
+    @Size(min = 2, max = 30)
     private String dateOfBirth;
     
     @Column(name = "sex")
