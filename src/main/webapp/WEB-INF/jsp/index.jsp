@@ -13,36 +13,23 @@
 <div class="container-fluid">
   <h1 class="col-md-4 col-md-offset-4 vcenter text-info">My contacts</h1>
   </div>
- <div> <p><button class="btn btn-warning" onclick="location.href='/myAddressBook/addNew'">+ New contact</button></p></div>
+ <div> <p><button class="btn btn-warning" onclick="location.href='/myAddressBook/addNew'">+ New contact</button></p>
  <div class="row">
 		<div class="col-md-12">
-            <div class="input-group" id="adv-search">
-                <input type="text" class="form-control" placeholder="Search for contact" />
-                <div class="input-group-btn">
-                    <div class="btn-group" role="group">
-                        <div class="dropdown dropdown-lg">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-                            <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                <form class="form-horizontal" role="form">
-                                  <div class="form-group">
-                                    <label for="contain">First name</label>
-                                    <input class="form-control" type="text" />
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="contain">Last name</label>
-                                    <input class="form-control" type="text" />
-                                  </div>
-                                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                                </form>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                    </div>
-                </div>
+		<div class="pull-right">
+            <div class="input-group text-right" id="adv-search"><c:url var="searchUrl" value="/myAddressBook/searchByName"/> 
+              <form class="form-horizontal" action="${searchUrl}" method="post">
+            	<div class="form-group">
+                 <input type="text" class="form-control" name= "firstName" th:value="${contact.firstName}" placeholder="Search for contact by name" />
+                 <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                 </div>
+                </form>
+            </div>
             </div>
           </div>
         </div>
-<div class="table-responsive">
+     </div>
+  <div class="table-responsive">
    <table id="allcontacts" class="table table-hover">
     <thead>
       <tr>
