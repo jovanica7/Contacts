@@ -5,18 +5,18 @@
     <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Address Book</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 <body>
 <div class="container-fluid">
-  <h1 class="col-md-4 col-md-offset-4 vcenter text-info">My contacts</h1>
-  </div>
- <div> <p><button class="btn btn-warning" onclick="location.href='/myAddressBook/addNew'">+ New contact</button></p>
- <div class="row">
-		<div class="col-md-12">
-		<div class="pull-right">
+<div class="row">
+  <h1 class="col-md-10 col-md-offset-4 vcenter text-info">My contacts</h1>
+ </div>
+ <div class="row"> <div class="col-md-6 btn-toolbar"><button class="btn btn-warning" onclick="location.href='/myAddressBook/addNew'">+ New contact</button><button class="btn btn-warning">Export all contacts</button></div>
+		<div class="col-md-14 pull-right">
+		<div class="col-md-10">
             <div class="input-group text-right" id="adv-search"><c:url var="searchUrl" value="/myAddressBook/searchByName"/> 
               <form class="form-horizontal" action="${searchUrl}" method="post">
             	<div class="form-group">
@@ -28,7 +28,6 @@
             </div>
           </div>
         </div>
-     </div>
   <div class="table-responsive">
    <table id="allcontacts" class="table table-hover">
     <thead>
@@ -60,13 +59,18 @@
    					 <span class="caret"></span></button>
    					 <ul class="dropdown-menu">
 					<li>
-           			 <button class="btn btn-warning"  onclick="location.href='/myAddressBook/update/${contact.id}'" >Update contact</button>
+           			 <button class="btn btn-warning" onclick="location.href='/myAddressBook/update/${contact.id}'" >Update contact</button>
        				</li>     				   
        				 <li><c:url var="deleteUrl" value="/myAddressBook/delete"/>  
      				   <form action="${deleteUrl}" method="post">
                     <input name="id" type="hidden" value="${contact.id}"/>
            			 <button type="submit" onClick="return confirm('Are you sure you want to delete this contact?')" class="btn btn-warning">Delete contact</button>
        				 </form></li>
+       				 <li><c:url var="detailsUrl" value="/myAddressBook/details"/>  
+     				   <form action="${detailsUrl}" method="post">
+                    <input name="id" type="hidden" value="${contact.id}"/>
+           			 <button class="btn btn-warning" onclick="location.href='/myAddressBook/details/${contact.id}'" >Details</button>
+       				</form></li> 
    					 </ul>
  					 </div>
  					</td>           
@@ -76,5 +80,6 @@
 </tbody>
 </table>
 </div>
+ </div>
 </body>
 </html>

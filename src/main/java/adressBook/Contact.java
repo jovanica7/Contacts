@@ -1,9 +1,7 @@
 package adressBook;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 
 import java.lang.String;

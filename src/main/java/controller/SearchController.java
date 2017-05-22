@@ -59,41 +59,6 @@ public class SearchController {
 	
   }
 	
-	@RequestMapping(value="/myAddressBook/search", method=RequestMethod.GET)
-		public ModelAndView searchForm(Model model){
-		
-		return new ModelAndView("index");
-		
-	}
-	
-	@RequestMapping(value="/myAddressBook/search", method=RequestMethod.POST)
-	public String search(Contact contact, BindingResult result,  Model model, HttpSession session){
-		
-		Collection<Contact> results = null;
-		String firstName = contact.getFirstName();
-		String lastName = contact.getLastName();
-
-		if(StringUtils.isEmpty(contact.getFirstName()) && StringUtils.isEmpty(contact.getLastName())){		
-			return "redirect:/myAddressBook";
-		}
-		else{			
-			results = Actions.findContactByNameAndSurname(firstName, lastName);
-		}
-		
-		session.setAttribute("searchFirstName", firstName);
-		session.setAttribute("searchLastName", lastName);
-		
-		if(results.size() < 1){
-			result.rejectValue(firstName, "search.contact.notfound", new Object[] {contact.getFirstName()}, "not found");
-			result.rejectValue(lastName, "search.contact.notfound", new Object[] {contact.getLastName()}, "not found");
-			return "redirect:/myAddressBook";
-		}
-		
-		model.addAttribute("allContacts", results);
-		return "index";
-		
-		
-	}
 
 }
 

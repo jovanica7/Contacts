@@ -1,15 +1,13 @@
 package controller;
 
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +18,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import adressBook.Actions;
 import adressBook.Contact;
+import adressBook.Relations;
+import adressBook.RelationsInfo;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,6 +63,7 @@ public class MainController{
 		
 			Contact contact = Actions.findContactById(id);
 			Actions.delete(contact);		
+		    Actions.deleteRelations(contact.getId());
 			model.addAttribute("allContacts", Actions.fetchAllContacts());
 			return new ModelAndView("redirect:/myAddressBook");
 		
@@ -91,5 +92,35 @@ public class MainController{
 		return new RedirectView("/myAddressBook");
 		
 	}
+	
+	@RequestMapping(value = "/myAddressBook", method = RequestMethod.POST)
+	public ModelAndView detailsOfContact(@RequestParam("id") int id, Model model) {
+			
+		 	model.addAttribute("contact", Actions.findContactById(id));  
+		 	List<RelationsInfo> list = new ArrayList<RelationsInfo>();
+		 	for(Relations rel : Actions.findAllRelations(id)){
+		 		if(rel.getId1() == id){
+		 			Contact c = Actions.findContactById(rel.getId2());
+		 			RelationsInfo relInf = new RelationsInfo(c.getFirstName(), c.getLastName(), rel.getRelationSecondToFirst());
+		 			list.add(relInf);
+		 			model.addAttribute("relInf", relInf);
+
+		 		}
+		 		else if(rel.getId2() == id){
+		 			Contact c = Actions.findContactById(rel.getId1());
+		 			RelationsInfo relInf = new RelationsInfo(c.getFirstName(), c.getLastName(), rel.getRelationFirstToSecond());
+		 			list.add(relInf); 
+		 			model.addAttribute("relInf", relInf);
+
+		 		}
+		 	}
+		 	
+		 	model.addAttribute("relationsInfo", list);
+			return new ModelAndView("details");
+		
+	}
+
+	
+	
 	
 }

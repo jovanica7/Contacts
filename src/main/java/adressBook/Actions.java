@@ -1,12 +1,11 @@
 package adressBook;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.ParameterExpression;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.websocket.server.PathParam;
 
@@ -14,10 +13,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.LogicalExpression;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 import org.springframework.stereotype.Component;
 
@@ -29,9 +24,11 @@ public class Actions {
 	private static final SessionFactory sessionFactory = buildSessionFactory();
 
 	  private static SessionFactory buildSessionFactory() {
+		  
 	    //Create a StandardServiceRegistry
 	    final ServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 	    return new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	    
 	  }
 	  
 	  public static Contact findContactById(@PathParam("id") int id) {
@@ -71,31 +68,6 @@ public class Actions {
 
 	      // Return the object
 	      return contacts;
-	  }
- 
-	public static List<Contact> findContactByNameAndSurname(@PathParam("firstName") String firstName, @PathParam("lastName") String lastName) {
-	  
-	     // Open a session
-	     Session session = sessionFactory.openSession();
-	     
-	     // Create Criteria
-	      CriteriaBuilder builder = session.getCriteriaBuilder();
-	      CriteriaQuery<Contact> criteria = builder.createQuery(Contact.class);
-	      
-	     // Select contact with passed first name and last name
-	      Root<Contact> contact = criteria.from(Contact.class);
-	      criteria.select(contact);
-	      criteria.where(builder.equal(contact.get("firstName"), firstName));
-	      criteria.where(builder.equal(contact.get("lastName"), lastName));
-	      
-	      // Get result list
-	      List<Contact> contacts = session.createQuery(criteria).getResultList();
-	      
-	     // Close the session
-	     session.close();
-	
-	     // Return the object
-	     return contacts;
 	  }
 	  
 	  public static void delete(Contact contact) {
@@ -169,6 +141,54 @@ public class Actions {
 	      return contacts;
 	  }
 	  
+	 public static List<Relations> findAllRelations(@PathParam("id") int id){
+		 
+		 // Open a session
+	      Session session = sessionFactory.openSession();	     
+	      
+	      // Create Criteria
+	      CriteriaBuilder builder = session.getCriteriaBuilder();
+	      CriteriaQuery<Relations> criteria =  builder.createQuery(Relations.class);
+	      Root<Relations> r = criteria.from(Relations.class);
+
+	     // Select contact with passed id
+	      ParameterExpression<Integer> p = builder.parameter(Integer.class);
+	      criteria.select(r).where(builder.or(builder.equal(r.get("id1"), p), builder.equal(r.get("id2"), p)));
+	      TypedQuery<Relations> query = session.createQuery(criteria);
+	      query.setParameter(p, id);
+	        
+	      // Get result list
+	      List<Relations> relations = query.getResultList();
+	      
+	      // Close the session
+	      session.close();
+
+	      // Return the object
+	      return relations;
+	 } 
+	 
+	 public static void deleteRelations(@PathParam("id") int id) {
+	      // Open a session
+	      Session session = sessionFactory.openSession();
+
+	      // Begin a transaction
+	      session.beginTransaction();
+
+	      // Use the session to delete all relations for one person
+	      List<Relations> relations = findAllRelations(id);
+	      for(Relations rel : relations){
+		      session.delete(rel);
+	      }
+
+	      // Commit the transaction
+	      session.getTransaction().commit();
+
+	      // Close the session
+	      session.close();
+	  }
+	 
+	 
+	 
 	  
 
 

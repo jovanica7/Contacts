@@ -19,6 +19,8 @@
  <property name="show_sql">true</property>
  
  <mapping class="adressBook.Contact"/>
+ <mapping class="adressBook.Relations"/>
+ 
  <!-- mapping resource="Contact.hbm.xml"/-->
  
  </session-factory>
